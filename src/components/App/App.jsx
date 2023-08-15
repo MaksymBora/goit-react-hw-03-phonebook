@@ -5,6 +5,8 @@ import { ContactList } from '../ContactsList/ContactsList';
 import { AppWrapper,Title, SearchWrapper, StyledTitles, CloseBtn, OpenPhonebook } from './app.styled';
 
 
+const localStorageKey = 'contacts'
+
 export class App extends Component {
   state = {
     contacts: [
@@ -15,7 +17,26 @@ export class App extends Component {
     ],
     filter: '',
     isOpen: false,
-    };
+  };
+  
+  componentDidMount = () => { 
+    const savedContacts = localStorage.getItem(localStorageKey);
+
+    if (savedContacts !== null) {
+      this.setState({
+        contacts: JSON.parse(savedContacts),
+      })
+    }
+  }
+  
+  componentDidUpdate = (prevProps, prevState) => {
+    
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem(localStorageKey, JSON.stringify(this.state.contacts));
+   }
+  }
+  
+
   
   addContact = (newContact) => {
     if (this.state.contacts.find(contact => contact.name === newContact.name)) {
