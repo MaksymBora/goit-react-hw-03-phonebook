@@ -13,7 +13,7 @@ import {
 } from './ContactsForm.styled';
 
 function validatePhone(phone) {
-  let regex = /^[+]?[0-9]*$/;
+  let regex = /^(?:\+380\d{9}|0\d{9})$/;
   return regex.test(phone);
 }
 
