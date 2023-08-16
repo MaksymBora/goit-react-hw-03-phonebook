@@ -52,7 +52,7 @@ export const ContactsForm = ({ onAdd }) => {
 
           <StyledLable>
             Number
-            <StyledField name="number" placeholder="Enter Phone" />
+            <StyledField name="number" placeholder="+380730990101" />
             <StyledError component="div" name="number" />
           </StyledLable>
 
